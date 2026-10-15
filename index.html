@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zachary Johnston | Engineering portfolio</title>
+<meta name="description" content="Zachary Johnston, mechanical engineering student: suspension, vehicle dynamics and component design for the Binghamton Motorsports FSAE car.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+    <header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="./">Zachary Johnston</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a class="nav-wide" href="#about">About</a>
+      <a class="nav-wide" href="#contact">Contact</a>
+      <a href="assets/resume.pdf">Résumé</a>
+    </nav>
+  </div>
+</header>
+    <main>
+      <section class="hero" aria-label="Introduction">
+        <div class="stage" data-car-stage data-model="assets/model/car.glb" data-draco="assets/vendor/draco/">
+          <img class="stage-poster" src="assets/model/car-poster.webp" alt="The Binghamton Motorsports FSAE car, three-quarter front view" width="1920" height="1200">
+          <div class="stage-canvas"></div>
+          <div class="hotspots"></div>
+          <p class="stage-status" role="status" hidden></p>
+          <div class="stage-controls">
+            <span class="stage-hint">Drag to rotate · scroll to zoom · select a marker</span>
+            <button class="btn" type="button" data-explore aria-pressed="false" hidden>Explore in 3D</button>
+          </div>
+        </div>
+        <div class="hero-intro">
+          <div class="wrap">
+            <div class="intro-text">
+              <h1>Zachary Johnston</h1>
+              <p class="intro-role">Mechanical engineering student, Binghamton Motorsports FSAE</p>
+              <p class="intro-thesis">I build the simulation tools the team designs with, and design parts from what they show. Select a marked system on the car to see the work behind it.</p>
+              <p class="intro-credit">The car is last season's Binghamton Motorsports electric car, designed by the team. For our driving simulator, I exported its Fusion 360 assembly to Blender and added my own materials.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="proof">
+        <div class="wrap">
+          <div class="proof-item"><span class="proof-value">1st</span><span class="proof-label">computational suspension design tool in team history</span></div>
+          <div class="proof-item"><span class="proof-value">8</span><span class="proof-label">suspension components on this year's car designed from its results</span></div>
+          <div class="proof-item"><span class="proof-value">3</span><span class="proof-label">of them designed by me: front and rear shock towers, rear rockers</span></div>
+        </div>
+      </div>
+
+      <section class="section" id="about">
+        <div class="wrap about-grid">
+          <div class="prose">
+            <h2>About</h2>
+            <p><span class="ph">[bio]</span></p>
+            <p>On Binghamton Motorsports I work on suspension design and vehicle dynamics. <span class="ph">[team role, years on team]</span></p>
+          </div>
+          <dl class="facts">
+            <div><dt>School</dt><dd>Binghamton University</dd></div>
+            <div><dt>Degree</dt><dd>B.S. Mechanical Engineering, minor in Biomedical Engineering</dd></div>
+            <div><dt>Graduation</dt><dd>May 2028</dd></div>
+            <div><dt>Team</dt><dd>Binghamton Motorsports (FSAE)</dd></div>
+            <div><dt>Focus</dt><dd>Suspension design, vehicle dynamics, simulation</dd></div>
+            <div><dt>Looking for</dt><dd><span class="ph">[internship / co-op, start date]</span></dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section" id="skills">
+        <div class="wrap">
+          <div class="section-head"><h2>Skills</h2></div>
+          <div class="skills">
+            <div class="skill-group">
+              <h3>Analysis and simulation</h3>
+              <ul>
+                <li>Suspension kinematics and vehicle dynamics</li>
+                <li>FEA in ANSYS Mechanical</li>
+                <li>Multibody kinematics in ANSYS Motion</li>
+                <li>Tire modeling (Pacejka Magic Formula)</li>
+                <li>CFD in ANSYS Fluent</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Design and modeling</h3>
+              <ul>
+                <li>Fusion 360</li>
+                <li>SolidWorks</li>
+                <li>Design for additive manufacturing</li>
+                <li>Blender: CAD import, non-destructive editing, procedural materials</li>
+              </ul>
+            </div>
+            <div class="skill-group">
+              <h3>Programming and electronics</h3>
+              <ul>
+                <li>MATLAB</li>
+                <li>Microcontroller code and circuits <span class="ph">[platform / language]</span></li>
+                <li>Assetto Corsa vehicle modding</li>
+                <li><span class="ph">[other languages]</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Projects</h2>
+            <p>Three of these are marked on the car above.</p>
+          </div>
+          <ol class="register">
+              <li class="entry" data-car-system="suspension" data-car-group="Group_Suspension">
+            <div class="ph-fig">Image</div>
+            <div class="entry-body">
+              <h3 class="entry-title"><a data-link data-title href="projects/suspension-dynamics.html">Suspension dynamics tool</a></h3>
+              <p class="entry-result" data-result>Team's first computational suspension design tool, replacing the paper calculations used in every previous season. Its results drove the design of eight suspension components on this year's car, three of which I'm designing myself.</p>
+              <ul class="tags">
+                <li>MATLAB</li>
+            <li>ANSYS Motion</li>
+            <li>Vehicle dynamics</li>
+              </ul>
+            </div>
+    <div class="entry-side">
+  <span class="on-car">On the car</span>
+  <button class="btn" type="button" data-show-on-car="suspension">Show on car</button>
+</div>
+          </li>
+<li class="entry">
+  <div class="ph-fig">Image</div>
+  <div class="entry-body">
+    <h3 class="entry-title"><a data-link data-title href="projects/suspension-components.html">Suspension component design</a></h3>
+    <p class="entry-result" data-result>The front and rear shock towers and the rear rockers for this year's car, designed from my dynamics tool's results: modeled in Fusion 360, checked with FEA in ANSYS Mechanical, and designed for additive manufacturing.</p>
+    <ul class="tags">
+      <li>Fusion 360</li>
+  <li>ANSYS Mechanical</li>
+  <li>Additive manufacturing</li>
+    </ul>
+  </div>
+
+</li>
+          <li class="entry" data-car-system="tires" data-car-group="Group_Tires">
+            <div class="ph-fig">Image</div>
+            <div class="entry-body">
+              <h3 class="entry-title"><a data-link data-title href="projects/tire-model.html">Tire data analysis</a></h3>
+              <p class="entry-result" data-result><span class="ph">[one-line result]</span></p>
+              <ul class="tags">
+                <li>Tire modeling</li>
+            <li><span class="ph">[model]</span></li>
+            <li><span class="ph">[tools]</span></li>
+              </ul>
+            </div>
+    <div class="entry-side">
+  <span class="on-car">On the car</span>
+  <button class="btn" type="button" data-show-on-car="tires">Show on car</button>
+</div>
+          </li>
+          <li class="entry" data-car-system="steering" data-car-group="Group_SteeringWheel">
+            <div class="ph-fig">Image</div>
+            <div class="entry-body">
+              <h3 class="entry-title"><a data-link data-title href="projects/driver-in-the-loop.html">Driver-in-the-loop simulator</a></h3>
+              <p class="entry-result" data-result>A digital twin of last season's car in Assetto Corsa for driver-in-the-loop testing, built from the team's Fusion 360 assembly, which I prepared and textured in Blender. <span class="ph">[impact]</span></p>
+              <ul class="tags">
+                <li>Assetto Corsa</li>
+            <li>Blender</li>
+            <li>Simulation</li>
+              </ul>
+            </div>
+    <div class="entry-side">
+  <span class="on-car">On the car</span>
+  <button class="btn" type="button" data-show-on-car="steering">Show on car</button>
+</div>
+          </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section" id="other-work">
+        <div class="wrap">
+          <div class="section-head"><h2>Other work</h2></div>
+          <ul class="other-list">
+    <li class="other-item">
+  <h3>Pulse oximeter teardown and redesign</h3>
+  <p class="other-context">Freshman design course, team project</p>
+  <p>We took apart a commercial pulse oximeter, presented how each component works, and redesigned it in SolidWorks. I modeled the circuit boards and the outer shells.</p>
+</li>
+<li class="other-item">
+  <h3>Whack-a-mole game</h3>
+  <p class="other-context">Freshman design course, team project</p>
+  <p>A working game built from circuits and 3D-printed parts. I wrote the code, built the circuitry, and designed several of the printed parts.</p>
+</li>
+<li class="other-item">
+  <h3>Running gait biomechanics research</h3>
+  <p class="other-context">High school research program, three years</p>
+  <p>Studied how different running shoes change running gait. The work was reviewed by a board and presented at <span class="ph">[symposium name]</span>.</p>
+</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="wrap">
+          <div class="section-head"><h2>Contact</h2></div>
+          <ul class="contact-list">
+            <li><span class="label">Email</span><a id="email" href="mailto:you@example.com"><span class="ph">you@example.com</span></a><button class="copy-btn" type="button" data-copy="you@example.com" data-copy-target="email">Copy</button></li>
+            <li><span class="label">LinkedIn</span><a href="https://www.linkedin.com/"><span class="ph">linkedin.com/in/your-name</span></a></li>
+            <li><span class="label">GitHub</span><a href="https://github.com/"><span class="ph">github.com/your-name</span></a></li>
+            <li><span class="label">Résumé</span><a href="assets/resume.pdf">Résumé (PDF)</a> <span class="ph">[add PDF]</span></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <footer class="site-foot">
+  <div class="wrap">
+    <p>© <span data-year>2026</span> Zachary Johnston. The 3D car is the team's Fusion 360 assembly, prepared and textured by me in Blender and rendered live with three.js.</p>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+    <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }
+    </script>
+    <script type="module" src="assets/js/car-viewer.js"></script>
+</body>
+</html>

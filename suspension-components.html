@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Suspension component design | Zachary Johnston</title>
+<meta name="description" content="Suspension component design: engineering case study by Zachary Johnston.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body data-page="project">
+    <header class="site-head">
+  <div class="wrap">
+    <a class="wordmark" href="../">Zachary Johnston</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../#projects">Projects</a>
+      <a class="nav-wide" href="../#about">About</a>
+      <a class="nav-wide" href="../#contact">Contact</a>
+      <a href="../assets/resume.pdf">Résumé</a>
+    </nav>
+  </div>
+</header>
+    <main class="wrap">
+      <header class="case-head">
+        <a class="crumb" href="../#projects">All projects</a>
+        <h1>Suspension component design</h1>
+        <p class="case-summary">I'm designing the front and rear shock towers and the rear rockers for this year's car, taking each from the load cases my dynamics tool produces to CAD, FEA and a printable part. <span class="ph">[status]</span></p>
+        <dl class="meta">
+              <div><dt>Role</dt><dd>Sole designer of these three parts</dd></div>
+          <div><dt>Team</dt><dd>Binghamton Motorsports (FSAE)</dd></div>
+          <div><dt>Timeline</dt><dd><span class="ph">[dates]</span></dd></div>
+          <div><dt>Tools</dt><dd>Fusion 360, ANSYS Mechanical, <span class="ph">[printer / material]</span></dd></div>
+        </dl>
+      </header>
+      <figure class="case-hero">
+        <div class="ph-fig">Main image</div>
+        <figcaption><span class="ph">[caption]</span></figcaption>
+      </figure>
+      <div class="results">
+            <div class="result"><span class="result-value">3</span><span class="result-label">parts I'm designing: front and rear shock towers, rear rockers</span></div>
+        <div class="result"><span class="result-value"><span class="ph">[SF]</span></span><span class="result-label">minimum safety factor under the worst load case</span></div>
+        <div class="result"><span class="result-value"><span class="ph">[value]</span></span><span class="result-label"><span class="ph">[mass saved]</span></span></div>
+      </div>
+      <div class="case-body">
+            <section class="case-section">
+          <h2>Loads from the dynamics tool</h2>
+          <div class="prose">
+            <p>Each part's load cases come from my <a href="suspension-dynamics.html">suspension dynamics tool</a>.</p>
+            <p><span class="ph">[load cases, peak forces]</span></p>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>My role</h2>
+          <div class="prose">
+            <p>I'm designing all three parts myself. Teammates designed the other components my tool informed: the front rockers, the anti-roll bars, the pushrods and the frame changes. <span class="ph">[what each part does]</span></p>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>CAD in Fusion 360</h2>
+          <div class="prose">
+            <p><span class="ph">[design intent, constraints]</span></p>
+            <figure class="case-fig"><div class="ph-fig">CAD render</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>FEA in ANSYS Mechanical</h2>
+          <div class="prose">
+            <p><span class="ph">[BCs, mesh convergence, stress, safety factor, hand calc]</span></p>
+            <figure class="case-fig"><div class="ph-fig">Stress plot</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>Design for additive manufacturing</h2>
+          <div class="prose">
+            <p><span class="ph">[process, material, orientation, supports]</span></p>
+            <figure class="case-fig"><div class="ph-fig">Slicer view or printed part</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>Status and next steps</h2>
+          <div class="prose">
+            <p><span class="ph">[status, testing plan]</span></p>
+          </div>
+        </section>
+      </div>
+      <nav class="pager" aria-label="More projects">
+        <a class="prev" href="suspension-dynamics.html"><span class="pager-dir">Previous project</span><span class="pager-title">Suspension dynamics tool</span></a>
+        <a class="next" href="tire-model.html"><span class="pager-dir">Next project</span><span class="pager-title">Tire data analysis</span></a>
+      </nav>
+    </main>
+    <footer class="site-foot">
+  <div class="wrap">
+    <p>© <span data-year>2026</span> Zachary Johnston. The 3D car is the team's Fusion 360 assembly, prepared and textured by me in Blender and rendered live with three.js.</p>
+  </div>
+</footer>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
