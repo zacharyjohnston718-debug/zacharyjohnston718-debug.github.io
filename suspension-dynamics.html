@@ -27,97 +27,303 @@
       <header class="case-head">
         <a class="crumb" href="./#projects">All projects</a>
         <h1>FSAE Suspension App</h1>
-        <p class="case-summary">A MATLAB application that ties suspension geometry, coilover hardware, vehicle mass, tires, anti-roll bars and component loads into one car model, so every calculation answers questions about the same car. It replaced Binghamton Motorsports' paper suspension calculations, and its results drove the design of eight suspension components on this year's car.</p>
+        <p class="case-summary">A MATLAB application that replaced Binghamton Motorsports' paper suspension calculations with one code-based model of the car. Geometry, coilover hardware, mass, tires, anti-roll bars and component loads are solved together, so every result describes the same car, and anyone on the team can see how the car is currently modeled and how it will behave.</p>
         <dl class="meta">
           <div><dt>Role</dt><dd>Developer; Vehicle Dynamics Lead</dd></div>
           <div><dt>Team</dt><dd>Binghamton Motorsports (FSAE)</dd></div>
-          <div><dt>Timeline</dt><dd><span class="ph">[start date]</span> – present; v2.0.1 released Oct 2026</dd></div>
+          <div><dt>Timeline</dt><dd>May 2026 – present</dd></div>
           <div><dt>Tools</dt><dd>MATLAB, MATLAB Compiler; ANSYS Motion for version 1</dd></div>
         </dl>
       <div class="case-cta"><a class="btn btn-solid" href="./#car-suspension">See it on the car</a></div>
       </header>
       <figure class="case-hero">
-        <div class="ph-fig">App overview screenshot</div>
-        <figcaption><span class="ph">[caption]</span></figcaption>
+        <a href="app-solvers.webp"><img src="app-solvers.webp" width="1919" height="1028" alt="The Suspension App's Solvers tab: a tree of selectable outputs on the left, the inputs they need with each value's source in the middle, and a results table and motion-ratio plot on the right."></a>
+        <figcaption>The Solvers tab. Tick the outputs you need (left), and the app lists every input they depend on, with its value and where it came from: CAD, measurement or lab data (middle). Results show this setup beside the saved car model, with plots (right). Select the image to view it full size.</figcaption>
       </figure>
       <div class="results">
         <div class="result"><span class="result-value">1st</span><span class="result-label">computational suspension design workflow in team history</span></div>
         <div class="result"><span class="result-value">8</span><span class="result-label">suspension components on this year's car designed from its results</span></div>
-        <div class="result"><span class="result-value">11</span><span class="result-label">linked analysis tabs, from kinematics to FEA load export</span></div>
+        <div class="result"><span class="result-value">20,000</span><span class="result-label">rocker layouts tested per axle in a single design search</span></div>
       </div>
       <div class="case-body">
-        <section class="case-section">
-          <h2>The problem</h2>
-          <div class="prose">
-            <p>Every previous season designed the suspension with paper calculations. Suspension decisions are coupled: moving a rocker pickup changes the motion ratio, the spring force at the wheel, where the car settles under its own weight, how much bump and droop is left, and the loads every link carries. Changing the car's mass moves the loaded ride position even when the CAD geometry stays the same.</p>
-            <p>Separate hand calculations can each be right and still disagree, because they use different ride references, mass cases or coordinate conventions. The people downstream also need more than a number: the CAD designer needs coordinates and clearance, the FEA designer needs load vectors and where they act, and whoever sets up the car needs settings they can measure.</p>
+        <section class="split">
+          <div class="split-text">
+            <h2>Why replace paper calculations</h2>
+            <div class="prose">
+              <p>Every previous season designed the suspension on paper. But suspension decisions are coupled: move one rocker pickup and the motion ratio, ride height, travel and link loads all change. On paper, that's a chain of separate hand calculations, each for one setup at one position, and they can each be right and still disagree.</p>
+              <p>The app solves the whole chain together from one model of the car.</p>
+            </div>
+          </div>
+          <div class="split-visual">
+            <div class="versus-wrap">
+              <table class="versus">
+                <thead><tr><th scope="col">On paper</th><th scope="col">In the app</th></tr></thead>
+                <tbody>
+                  <tr><td>One position at a time</td><td>The full range of travel</td></tr>
+                  <tr><td>Ride height assumed from CAD</td><td>Static ride solved from the real spring, preload and mass</td></tr>
+                  <tr><td>Every change redone by hand</td><td>Every dependent result updates</td></tr>
+                  <tr><td>Limits checked from memory</td><td>Spring, shock and collar limits checked on every run</td></tr>
+                  <tr><td>Changes passed on in meetings</td><td>A numbered car-model file that lists what changed</td></tr>
+                  <tr><td>Numbers retyped into CAD and FEA</td><td>Coordinates, loads and keep-out volumes exported</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
-        <section class="case-section">
-          <h2>My role</h2>
-          <div class="prose">
-            <p>I'm the app's developer and the team's Vehicle Dynamics Lead. I set what it had to answer, supplied and checked the geometry and hardware data it runs on, made the design calls it informs, and coordinate its outputs with the teammates designing the other components. <span class="ph">[how you used AI coding tools, if at all]</span></p>
+
+        <section class="split split--flip">
+          <div class="split-text">
+            <h2>One model the whole team works from</h2>
+            <div class="prose">
+              <p>Before the app, the current state of the suspension lived in meetings and conversations, and two people could easily be working from different versions of the car. Now one car model is the reference. When a hardpoint, spring or mass changes, it changes in one place, and every result follows. Teammates get it from a master file on the team's shared Google Drive. Each version is numbered, and opening a new one lists what changed since the last.</p>
+              <p>Anyone on the team can open the compiled app, no MATLAB license needed, and see how the car is modeled and how it will behave. That has cut down confusion between teammates and subteams about what the car is and what it will do.</p>
+            </div>
+          </div>
+          <div class="split-visual">
+            <div class="flow" role="img" aria-label="One car model feeds the Suspension App, whose results go to suspension parts, FEA, the frame, aero, brakes, traction control and car setup.">
+              <div class="flow-node"><strong>Car model</strong><span>Hardpoints · Coilovers · Masses · Tires · Anti-roll bars</span><span class="flow-note">Numbered master file on the team's shared drive</span></div>
+              <div class="flow-arrow" aria-hidden="true"></div>
+              <div class="flow-node flow-node--app"><strong>Suspension App</strong><span>11 tabs, one solve</span></div>
+              <div class="flow-arrow" aria-hidden="true"></div>
+              <ul class="flow-out"><li>Suspension parts</li><li>FEA loads</li><li>Frame</li><li>Aero</li><li>Brakes</li><li>Traction control</li><li>Car setup</li></ul>
+            </div>
           </div>
         </section>
-        <section class="case-section">
-          <h2>How it evolved</h2>
-          <div class="prose">
-            <ol>
-              <li><strong>Version 1, ANSYS Motion.</strong> I built the team's first kinematic model of the suspension as a multibody model in Motion.</li>
-              <li><strong>MATLAB model.</strong> When license limits ruled Motion out, I rebuilt the analysis in MATLAB from that model, alongside separate scripts for tire fitting and rocker design.</li>
-              <li><strong>Suspension App.</strong> I combined those scripts into one application with a graphical interface and a shared car model. Version 2.0.1 ships as a compiled Windows build, so teammates can run it without a MATLAB license.</li>
+
+        <section class="tour" data-tour aria-labelledby="tour-title">
+          <div class="tour-head">
+            <div>
+              <h2 id="tour-title">Inside the app</h2>
+              <p class="tour-intro">Eleven tabs, in the order a design question moves through them.</p>
+            </div>
+            <div class="tour-controls">
+              <span class="tour-count" data-tour-count aria-live="polite">1 / 10</span>
+              <button type="button" class="tour-btn" data-tour-prev aria-label="Previous tab">&#8592;</button>
+              <button type="button" class="tour-btn" data-tour-next aria-label="Next tab">&#8594;</button>
+            </div>
+          </div>
+          <div class="tab-strip" role="group" aria-label="App tabs"><button type="button" data-go="0" aria-current="true">Start here and Settings</button><button type="button" data-go="1">Car model</button><button type="button" data-go="2">Solvers</button><button type="button" data-go="3">Tyre</button><button type="button" data-go="4">Rocker design</button><button type="button" data-go="5">Forces (FEA)</button><button type="button" data-go="6">Keep-out</button><button type="button" data-go="7">Results</button><button type="button" data-go="8">Candidate check</button><button type="button" data-go="9">Export</button></div>
+          <div class="tour-track" tabindex="0" aria-label="App tabs, scroll sideways">
+            <article class="tour-card" id="tab-start" aria-label="Start here and Settings">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="app-start-here.webp" data-view="0" title="Open the full screenshot"><img src="app-start-here-crop.webp" width="994" height="559" loading="lazy" alt="The Start here tab: a quick-start guide to the app&#x27;s workflow."></a></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tabs 1–2 of 11</p>
+                <h3>Start here and Settings</h3>
+                <p>Start here is a built-in guide: a quick start, then what every tab and output is for. Settings sets the output folder, parallel computing, and the Fusion 360 coordinates of the front and rear left wheel centers, which anchor every input and result to the car's CAD frame (+X left, +Y up, +Z forward).</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>New users can learn the workflow on their own, and every number is in the same frame as the team's CAD.</dd></div>
+                  <div><dt>On paper</dt><dd>Each calculation picks its own reference point and axis convention.</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="tour-card" id="tab-car" aria-label="Car model">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="app-car-model.webp" data-view="0" title="Open the full screenshot"><img src="app-car-model-crop.webp" width="692" height="389" loading="lazy" alt="Car model tab: a table of suspension parameters with their values, units and status, such as measured, CAD or lab."></a></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tab 3 of 11</p>
+                <h3>Car model</h3>
+                <p>The whole car in one file: hardpoints in the team's Fusion 360 coordinates, coilover hardware, masses and anti-roll bar data, plus a linked tire model. Every value has units, a status (measured, CAD, lab, user, default or unconfirmed) and a note on where it came from.</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>One current definition of the car that every other tab reads, with the origin of every number visible.</dd></div>
+                  <div><dt>On paper</dt><dd>Numbers spread across sketches and spreadsheets, where an outdated value can survive in one calculation.</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="tour-card" id="tab-solvers" aria-label="Solvers">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="app-solvers.webp" data-view="0" title="Open the full screenshot"><img src="app-solvers-crop.webp" width="455" height="256" loading="lazy" alt="Solvers results table comparing this setup with the saved car model for motion ratio and camber, front and rear."></a></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tab 4 of 11</p>
+                <h3>Solvers</h3>
+                <p>Tick the outputs you need, and the app lists the inputs they depend on, solves the suspension through its full travel and compares this setup with the saved car.</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>Kinematics, steering, static ride and travel, wheel rates, roll and anti-roll bar sizing in one run, with plots and assumptions.</dd></div>
+                  <div><dt>On paper</dt><dd>One number at one pose, with ride height assumed from CAD instead of solved from the real spring and mass.</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="tour-card" id="tab-tyre" aria-label="Tyre">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="app-tyre.webp" data-view="0" title="Open the full screenshot"><img src="app-tyre-crop.webp" width="1300" height="892" loading="lazy" alt="Lateral force against slip angle at three vertical loads, with the untested range shaded."></a><a href="app-tyre-mz.webp" data-view="1" title="Open the full screenshot" hidden><img src="app-tyre-mz-crop.webp" width="1300" height="892" loading="lazy" alt="Aligning moment against slip angle at three vertical loads."></a><a href="app-tyre-camber.webp" data-view="2" title="Open the full screenshot" hidden><img src="app-tyre-camber-crop.webp" width="1300" height="892" loading="lazy" alt="Peak lateral grip coefficient against camber at three vertical loads."></a></div>
+                <div class="view-switch" role="group" aria-label="Views"><button type="button" aria-pressed="true">Lateral force</button><button type="button" aria-pressed="false">Aligning moment</button><button type="button" aria-pressed="false">Grip vs camber</button></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tab 5 of 11</p>
+                <h3>Tyre</h3>
+                <p>Fits Magic Formula 6.1 tire models to TTC test runs, or imports a .tir file, then plots lateral and longitudinal force, aligning moment, friction circles and peak grip against load, camber and pressure. Anything outside the tested conditions is shaded. More on the <a href="tire-model.html">tire data page</a>.</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>A checked tire model that sets the grip limits for the load cases and vehicle calculations.</dd></div>
+                  <div><dt>On paper</dt><dd>A single friction coefficient.</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="tour-card" id="tab-rocker" aria-label="Rocker design">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="app-rocker-design.webp" data-view="0" title="Open the full screenshot"><img src="app-rocker-design-crop.webp" width="510" height="287" loading="lazy" alt="Rocker design results: 20,000 front layouts tried, with a ranked table of paired front and rear candidate IDs."></a></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tab 6 of 11</p>
+                <h3>Rocker design</h3>
+                <p>Tests 20,000 rocker layouts per axle inside movement boxes around the current design, rejecting any that fail the shock, spring, collar or travel checks. It keeps the best 500 per axle, then pairs front and rear and ranks the 500 best pairs by ride frequency, aiming for a rear about 10% higher than the front, following Milliken.</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>Ranked front, rear and paired candidates, with IDs that open in Candidate check and export to Fusion 360.</dd></div>
+                  <div><dt>On paper</dt><dd>A handful of layouts, checked by hand against a few criteria.</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="tour-card" id="tab-forces" aria-label="Forces (FEA)">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="app-forces.webp" data-view="0" title="Open the full screenshot"><img src="app-forces-crop.webp" width="510" height="287" loading="lazy" alt="Forces tab: filters for load case, corner and body above a table of hardpoint forces with their ANSYS Named Selections."></a><a href="app-forces-tyre.webp" data-view="1" title="Open the full screenshot" hidden><img src="app-forces-tyre-crop.webp" width="503" height="283" loading="lazy" alt="Tyre forces table for the cornering and braking cases, with vertical, longitudinal and lateral force at each corner."></a><a href="app-forces-links.webp" data-view="2" title="Open the full screenshot" hidden><img src="app-forces-links-crop.webp" width="513" height="288" loading="lazy" alt="Link forces table listing each load case, such as bump at the bump end and cornering, by corner."></a></div>
+                <div class="view-switch" role="group" aria-label="Views"><button type="button" aria-pressed="true">Hardpoint forces</button><button type="button" aria-pressed="false">Tyre forces</button><button type="button" aria-pressed="false">Link forces</button></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tab 7 of 11</p>
+                <h3>Forces (FEA)</h3>
+                <p>Calculates the force on every hardpoint of all four corners for 10 design load cases: static, bump, cornering, braking, traction, trail braking and one-wheel bump. Cornering and braking loads come from the tire model's grip limit, and every body is solved in rigid-body equilibrium.</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>Force tables filtered by case, corner and body, in the Fusion frame, plus an ANSYS script that applies each case through matching Named Selections (such as FL_UCA_F).</dd></div>
+                  <div><dt>On paper</dt><dd>A free-body diagram for every part in every case, and easy to get inconsistent.</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="tour-card" id="tab-keepout" aria-label="Keep-out">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="keep-out-volumes.webp" data-view="0" title="Open the full screenshot"><img src="keep-out-volumes.webp" width="844" height="368" loading="lazy" alt="Translucent keep-out volumes around both axles&#x27; suspension parts and wheels, in the Fusion 360 frame."></a></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tab 8 of 11</p>
+                <h3>Keep-out</h3>
+                <p>Sweeps every suspension part and wheel through travel, and through steering at the front, padded by a margin (5 mm here).</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>Keep-out volumes the frame and other subteams can import into Fusion 360 and design around.</dd></div>
+                  <div><dt>On paper</dt><dd>Clearance checked at a few positions.</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="tour-card" id="tab-results" aria-label="Results">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="app-report.webp" data-view="0" title="Open the full screenshot"><img src="app-report-crop.webp" width="937" height="527" loading="lazy" alt="A Suspension report page with plots of motion ratio, camber, toe and roll center height through travel, front and rear."></a></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tab 9 of 11</p>
+                <h3>Results</h3>
+                <p>Turns results from the other tabs into HTML pages for presentation and analysis: Suspension (kinematic and dynamic results), Rocker (designs), Loads (force tables) and Keep-out (the script that builds the keep-out mesh for Fusion 360).</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>Reports ready for design reviews, and the Fusion script for the keep-out volumes.</dd></div>
+                  <div><dt>On paper</dt><dd>Hand calculations rarely end up in a form the rest of the team can review.</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="tour-card" id="tab-candidate" aria-label="Candidate check">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="app-candidate.webp" data-view="0" title="Open the full screenshot"><img src="app-candidate-crop.webp" width="650" height="366" loading="lazy" alt="Candidate check page: eight design checks, from travel and collar thread to hole-edge material, all marked pass."></a></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tab 10 of 11</p>
+                <h3>Candidate check</h3>
+                <p>Enter a front, rear or pair ID from the rocker search, and the app builds an HTML page for that rocker: its points to copy into the Fusion sketch, every pass/fail check, and its motion ratio through travel against the current rocker.</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>A full review of any candidate before it goes into CAD.</dd></div>
+                  <div><dt>On paper</dt><dd>Every layout would need its own full set of calculations.</dd></div>
+                </dl>
+              </div>
+            </article>
+            <article class="tour-card" id="tab-export" aria-label="Export">
+              <div class="tour-media">
+                <div class="tour-shot"><a href="app-setup-sheet.webp" data-view="0" title="Open the full screenshot"><img src="app-setup-sheet-crop.webp" width="1120" height="630" loading="lazy" alt="A setup sheet listing front and rear design settings, with blank columns for measured values."></a></div>
+              </div>
+              <div class="tour-text">
+                <p class="tab-kicker">Tab 11 of 11</p>
+                <h3>Export</h3>
+                <p>Writes a new car.json and tyre.json for the shared Google Drive master, plus a setup sheet for testing days: collar settings, travel, alignment, wheel rates, anti-roll bar settings and tire pressures, with blank columns for measured values.</p>
+                <dl class="tab-facts">
+                  <div><dt>Gives the team</dt><dd>A new version of the team's car model, and a setup sheet for the track.</dd></div>
+                  <div><dt>On paper</dt><dd>Setup numbers copied by hand, with no record of which version of the car they belong to.</dd></div>
+                </dl>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="split">
+          <div class="split-text">
+            <h2>Impact on this year's car</h2>
+            <div class="prose">
+              <p>The app now drives the suspension team's design decisions:</p>
+              <ul>
+                <li>Front and rear rockers (I designed the rear)</li>
+                <li>Front and rear shock towers (I designed both; see <a href="suspension-components.html">component design</a>)</li>
+                <li>Front and rear pushrods</li>
+                <li>Front and rear anti-roll bars, including the full load package for a teammate's redesign</li>
+                <li>FEA force tables for all of these parts</li>
+              </ul>
+              <p>Other subteams use its outputs too: ride height for aero and the frame, and center of gravity height, mass and weight distribution for brakes, traction control and aero.</p>
+            </div>
+          </div>
+          <figure class="split-visual">
+            <div class="fig-pair">
+              <a href="rear-rocker.webp" style="flex: 0.777 1 0"><img src="rear-rocker.webp" width="503" height="647" loading="lazy" alt="The rear rocker in Fusion 360: two parallel plates joined by three bolts and a center spacer, with pickup holes at each corner."></a>
+              <a href="rear-rocker-assembly.webp" style="flex: 1.208 1 0"><img src="rear-rocker-assembly.webp" width="859" height="711" loading="lazy" alt="The rear rocker mounted on the frame, connected to the shock above, the pushrod and the anti-roll bar drop link below."></a>
+            </div>
+            <figcaption>The rear rockers I designed, alone and on the car with the shock, pushrod and anti-roll bar drop link (Fusion 360).</figcaption>
+          </figure>
+        </section>
+
+        <section class="split split--flip">
+          <div class="split-text">
+            <h2>Example: the rocker geometry</h2>
+            <div class="prose">
+              <p>Last year's rockers were designed with code that contained an error. Reconstructed in the app, they give a motion ratio at static ride of about 1.07 front and 0.97 rear. This year's rockers bring it to about 0.71 and 0.75, the value last year's design was aiming for.</p>
+              <p>The lower motion ratio fits more wheel travel inside the same shock and spring limits. Total usable travel grows from about 41 to 62 mm at the front and 45 to 60 mm at the rear, above the FSAE minimum of 50.8 mm (2 in), and the added droop keeps the tires on the ground. We kept the springs and designed around the lower wheel rate, which suited the team's goal of more mechanical grip on bumpier courses.</p>
+            </div>
+          </div>
+          <figure class="split-visual">
+            <a href="rocker-motion-ratio-compact.webp"><img src="rocker-motion-ratio-compact.webp" width="1056" height="1100" loading="lazy" alt="Motion ratio against wheel travel. Front: last year about 1.07 from 10 mm droop to 31 mm bump; this year about 0.71 from 28 mm droop to 34 mm bump. Rear: last year 0.94 to 1.03 over 17 mm droop to 28 mm bump; this year 0.69 to 0.78 over 32 mm droop to 28 mm bump."></a>
+            <figcaption>Motion ratio through the usable travel from static ride (313.5 kg with driver) at the planned pushrod and collar settings. Last year's setup is reconstructed in the app, not measured as built.</figcaption>
+          </figure>
+        </section>
+
+        <section class="split">
+          <div class="split-text">
+            <h2>My role</h2>
+            <div class="prose">
+              <p>I'm the app's developer and the team's Vehicle Dynamics Lead. I wrote most of the physics code myself, from the equations in Milliken and Milliken's <em>Race Car Vehicle Dynamics</em>; the anti-roll bar solver integrates a teammate's code. I used AI coding tools to help optimize my code, run it in parallel and integrate MATLAB Runtime for the standalone build.</p>
+              <p>As lead, I decide what the app has to answer, check the data it runs on, and coordinate its outputs with the teammates designing the other components.</p>
+            </div>
+          </div>
+          <div class="split-visual">
+            <ol class="steps">
+              <li><strong>ANSYS Motion</strong><span>The team's first kinematic model of the suspension, from May 2026.</span></li>
+              <li><strong>MATLAB model</strong><span>Rebuilt from the Motion model when license limits ruled it out, and validated against it.</span></li>
+              <li><strong>Suspension App</strong><span>The MATLAB scripts combined into one app with a shared car model, compiled so the whole team can run it.</span></li>
             </ol>
           </div>
         </section>
-        <section class="case-section">
-          <h2>How it works</h2>
-          <div class="prose">
-            <p>The car is defined once, in a car-model file with a linked tire model: hardpoints in the team's Fusion 360 coordinates, coilover hardware, masses and anti-roll bar data. Each input carries its units and where it came from (CAD coordinate, measurement, fitted value or estimate), so a result can be traced back to its assumptions.</p>
-            <p>The user starts from the question. Choosing an output tells the app which inputs it needs. Temporary overrides let you try a change without editing the saved car, and every result shows "this setup" next to the saved car model so the effect of the change is visible.</p>
-            <p>What it calculates:</p>
-            <ul>
-              <li><strong>Kinematics through travel:</strong> motion ratio, camber, toe, bump steer, roll center movement, caster, kingpin inclination, scrub radius and mechanical trail.</li>
-              <li><strong>Static ride and travel:</strong> where the car settles with the actual spring, preload and collar setting, and how much bump and droop remain from there.</li>
-              <li><strong>Rates:</strong> wheel rate, ride frequency with and without tire compliance, and light/heavy mass cases.</li>
-              <li><strong>Steering and anti-geometry:</strong> Ackermann, turning radius, steering ratio, anti-dive, anti-lift and anti-squat.</li>
-              <li><strong>Roll and anti-roll bars:</strong> roll gradient, roll stiffness split and lateral load transfer, with the bar's drop-link geometry solved for each hole position.</li>
-              <li><strong>Tires:</strong> my Magic Formula tire model, used for tire-informed limits instead of a single friction coefficient. See <a href="tire-model.html">Tire data analysis</a>.</li>
-              <li><strong>Rocker design search:</strong> samples rocker pickup points inside allowed regions, rejects candidates that fail travel, collar, rate or material-edge checks, ranks the rest, and exports the winners as Fusion coordinates.</li>
-              <li><strong>FEA loads:</strong> forces and moments at each hardpoint for static, bump, cornering, braking, traction and combined events, with equilibrium checks, exported for ANSYS Mechanical.</li>
-              <li><strong>Packaging:</strong> sweeps simplified parts through suspension travel and steering, and exports the resulting keep-out volumes to Fusion 360 for the frame and other subsystems.</li>
-            </ul>
-            <figure class="case-fig"><div class="ph-fig">Rocker in CAD with its motion-ratio curve</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
+
+        <section class="split split--flip">
+          <div class="split-text">
+            <h2>Validation and next steps</h2>
+            <div class="prose">
+              <p>I validated the MATLAB model against the ANSYS Motion model before building the app on it, and the load solver checks force and moment equilibrium on every body. These checks verify the math, not the car: the model is rigid-body and quasi-static, and its loads haven't yet been compared with measured data.</p>
+              <p>Next:</p>
+              <ul>
+                <li>Compare predicted ride height, travel and loads with measurements on the new car.</li>
+                <li>A live alert when two teammates are making changes in the app at the same time.</li>
+                <li>Design searches for other components (control arms, steering column, uprights) on the same architecture as the rocker search.</li>
+                <li>A road visualization that shows the suspension moving and the tire forces changing through travel.</li>
+                <li>A lap-time simulation to evaluate full-car performance on different tracks.</li>
+              </ul>
+            </div>
           </div>
-        </section>
-        <section class="case-section">
-          <h2>One calculation, start to finish</h2>
-          <div class="prose">
-            <p>The core question is whether a rocker and shock layout gives enough bump and droop once the car settles under its own weight. The CAD pose is not the ride position, so the app solves for it.</p>
-            <p>Motion ratio is defined as shock compression per unit of wheel bump, <span class="eq">MR = −dL<sub>shock</sub>/dz<sub>wheel</sub></span>, evaluated through travel rather than at one pose. With free spring length L<sub>free</sub>, shaft-seat offset s and collar position a, the spring compression at shock length L is <span class="eq">x = L<sub>free</sub> + s + a − L</span>, and the force supporting the wheel is <span class="eq">F = (k·x + F<sub>gas</sub>)·MR</span>.</p>
-            <p>Static ride is where that force balances the sprung corner weight. Bump and droop are then measured from that loaded position, against a hard limit of 50.8 mm of total spring compression set for the project, plus shock stroke reserves and collar thread limits. Wheel rate comes from the slope of the wheel-force curve, so it captures geometry effects that the usual <span class="eq">k·MR²</span> approximation misses.</p>
-            <p>The same solved pose then feeds the load calculations: each event is balanced across the upright, both arms and the rocker, and the resulting forces are exported at the hardpoints where the FEA model needs them.</p>
-          </div>
-        </section>
-        <section class="case-section">
-          <h2>Verification and limits</h2>
-          <div class="prose">
-            <p>The load solver reports force and moment residuals for each body and compares force transmission against the mechanism's motion as a virtual-work check. Model corrections and interface changes get targeted check sets: 17 checks for the October 23 model corrections, and 14 for removing a synthetic 1,000 N reference load case that sat beside the real cases and was easy to misread. The v2.0.1 build was verified against its source and data files before release.</p>
-            <p>These checks verify the math and the software, not the car. The analysis is rigid-body and quasi-static: it doesn't model frame compliance, bushing play or damper hysteresis, and its loads haven't yet been compared with measured data. The rocker search is a sampled search with explicit pass/fail checks, not a proof of the best possible design. The app generates FEA inputs; stress analysis happens separately in ANSYS Mechanical. <span class="ph">[Motion vs. MATLAB comparison, if you did one]</span></p>
-          </div>
-        </section>
-        <section class="case-section">
-          <h2>Results</h2>
-          <div class="prose">
-            <p>Eight suspension components on this year's car were designed from its results. I'm designing three of them myself, the front and rear shock towers and the rear rockers; see <a href="suspension-components.html">Suspension component design</a>. Teammates used it for the front rockers, the front and rear anti-roll bars, the front and rear pushrods, and the frame changes to fit them.</p>
-            <p>When a teammate redesigned the anti-roll bars, the app produced the load package for that design: forces on the whole blade assembly for each operating and articulation case, in the CAD coordinate system. The compiled build lets teammates run the analysis themselves without MATLAB.</p>
-            <p><span class="ph">[example design decision]</span></p>
-            <figure class="case-fig"><div class="ph-fig">Keep-out volume or load-case diagram</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
-          </div>
-        </section>
-        <section class="case-section">
-          <h2>What I'd do next</h2>
-          <div class="prose">
-            <p>Compare the predicted ride position, travel and loads against measurements on the new car. Add an archive of past runs, since the app currently keeps only the latest result per module. Bring the separate design studies (pushrod adjustment, mass and weight-distribution sweeps) into the app itself. <span class="ph">[other next steps]</span></p>
+          <div class="split-visual">
+            <div class="stat-card">
+              <span class="stat-value">0.6%</span>
+              <span class="stat-label">largest difference in rear camber gain between the MATLAB model and ANSYS Motion, compared point by point across full travel (at full droop)</span>
+            </div>
           </div>
         </section>
       </div>
@@ -132,5 +338,6 @@
   </div>
 </footer>
 <script src="site.js" defer></script>
+<script src="app-tour.js" defer></script>
 </body>
 </html>
