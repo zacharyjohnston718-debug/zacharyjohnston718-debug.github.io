@@ -486,3 +486,11 @@ p { margin: 0; }
   .tab-facts div { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
 }
 @media (prefers-reduced-motion: reduce) { .tour-track { scroll-behavior: auto; } }
+
+/* small data tables on case pages (fit quality etc.) */
+.datatable { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.datatable th, .datatable td { text-align: left; padding: 0.6rem 0.85rem; border-top: 1px solid var(--rule); }
+.datatable thead th { border-top: 0; font-family: var(--font-display); font-weight: 650; font-size: var(--step-0); }
+.datatable td + td { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+.split-visual .tour-media { align-content: start; }
+.split-visual .tour-shot { aspect-ratio: 4 / 3; }

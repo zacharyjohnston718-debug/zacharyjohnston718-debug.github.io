@@ -27,60 +27,132 @@
       <header class="case-head">
         <a class="crumb" href="./#projects">All projects</a>
         <h1>Tire data analysis</h1>
-        <p class="case-summary">MATLAB fitters that turn tire test data into Pacejka Magic Formula models of lateral and longitudinal force, aligning moment and combined slip. The fitted model now runs inside the <a href="suspension-dynamics.html">FSAE Suspension App</a>, where it informs the vehicle calculations.</p>
+        <p class="case-summary">MATLAB fitters that turn Tire Test Consortium data into Pacejka Magic Formula models of our Hoosier tires: lateral and longitudinal force, aligning moment and combined slip. The model replaced searching raw test data by hand, runs inside the <a href="suspension-dynamics.html">FSAE Suspension App</a>, and now sets the team's tire pressures, camber targets and FEA tire loads.</p>
         <dl class="meta">
-              <div><dt>Role</dt><dd>Developer</dd></div>
+              <div><dt>Role</dt><dd>Sole developer</dd></div>
           <div><dt>Team</dt><dd>Binghamton Motorsports (FSAE)</dd></div>
-          <div><dt>Timeline</dt><dd><span class="ph">[dates]</span></dd></div>
+          <div><dt>Timeline</dt><dd>March 2026 – present</dd></div>
           <div><dt>Tools</dt><dd>MATLAB (lsqnonlin); Magic Formula 6.1.2</dd></div>
         </dl>
       <div class="case-cta"><a class="btn btn-solid" href="./#car-tires">See it on the car</a></div>
       </header>
       <figure class="case-hero">
-        <div class="ph-fig">Main image</div>
-        <figcaption><span class="ph">[caption]</span></figcaption>
+        <a href="app-tyre.webp"><img src="app-tyre.webp" width="1912" height="1017" alt="The Suspension App's Tyre tab: fitted model details, test conditions, and a plot of lateral force against slip angle at three vertical loads."></a>
+        <figcaption>The tire model in the Suspension App's Tyre tab: the fit and its tested ranges (left), the conditions to plot (middle), and lateral force against slip angle at three loads, with untested ranges shaded (right). Select the image to view it full size.</figcaption>
       </figure>
       <div class="results">
-            <div class="result"><span class="result-value">2.6–3.0%</span><span class="result-label">RMSE of each load's measured peak, on runs kept out of the fit</span></div>
-        <div class="result"><span class="result-value">4</span><span class="result-label">channels fitted: lateral force, longitudinal force, aligning moment and combined slip</span></div>
-        <div class="result"><span class="result-value">1</span><span class="result-label">tire model shared by every calculation in the Suspension App</span></div>
+            <div class="result"><span class="result-value">4</span><span class="result-label">channels fitted: lateral force, aligning moment, longitudinal force and combined slip</span></div>
+        <div class="result"><span class="result-value">50,300</span><span class="result-label">test samples behind the lateral and aligning-moment fits</span></div>
+        <div class="result"><span class="result-value">5</span><span class="result-label">setup and design choices now based on the model, from tire pressures to anti-roll bar rates</span></div>
       </div>
       <div class="case-body">
-            <section class="case-section">
-          <h2>The problem</h2>
-          <div class="prose">
-            <p><span class="ph">[problem]</span></p>
+        <section class="split">
+          <div class="split-text">
+            <h2>Why build a tire model</h2>
+            <div class="prose">
+              <p>Before this model, the team worked straight from raw Tire Test Consortium data. Checking one case, a given load, camber and pressure, meant searching the entire dataset by hand, and the answer only existed where the test happened to run.</p>
+              <p>A fitted model answers for any condition on demand, and it's clear about where it's interpolating and where it's extrapolating.</p>
+            </div>
+          </div>
+          <div class="split-visual">
+            <div class="versus-wrap">
+              <table class="versus">
+                <thead><tr><th scope="col">Raw test data</th><th scope="col">Fitted model</th></tr></thead>
+                <tbody>
+                  <tr><td>Search the whole dataset by hand for each case</td><td>Any load, camber, pressure and slip on demand</td></tr>
+                  <tr><td>Only the exact conditions that were tested</td><td>Smooth curves between them, with extrapolation flagged</td></tr>
+                  <tr><td>Noisy samples, and grip that drifts through each test</td><td>A robust fit, with drift checked and two grip levels</td></tr>
+                  <tr><td>Numbers copied into calculations by hand</td><td>Built into the Suspension App's grip limits and FEA load cases</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
-        <section class="case-section">
-          <h2>My role</h2>
-          <div class="prose">
-            <p>I wrote and iterated the fitting scripts through several versions, then built them into the Suspension App's tire module. <span class="ph">[anything teammates contributed]</span></p>
+
+        <section class="split split--flip">
+          <div class="split-text">
+            <h2>How the model is built</h2>
+            <div class="prose">
+              <p>I've done this work on my own since March 2026. The data are TTC runs for our Hoosier 43100 on a 6 in rim. Each channel is fitted to the Magic Formula 6.1.2 form with MATLAB's lsqnonlin, using a robust Huber loss (iteratively reweighted) so outlier samples don't drag the fit, and multiple starting points so the optimizer doesn't settle in a poor local minimum.</p>
+              <p>The fitter checks every test for grip drift and gives each use of the model a status, so a number outside what the data support is flagged instead of trusted. The fits now run inside the Suspension App's Tyre tab.</p>
+            </div>
+          </div>
+          <figure class="split-visual">
+            <div class="versus-wrap">
+              <table class="datatable">
+                <thead><tr><th scope="col">Fit</th><th scope="col">RMS error</th><th scope="col">Test samples</th></tr></thead>
+                <tbody>
+                  <tr><td>Lateral force</td><td>66.9 N</td><td>50,300</td></tr>
+                  <tr><td>Aligning moment</td><td>8.19 N·m</td><td>50,300</td></tr>
+                  <tr><td>Longitudinal force</td><td>133.5 N</td><td>17,020</td></tr>
+                  <tr><td>Combined slip</td><td>190.2 N</td><td>25,310</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <figcaption>Root-mean-square error of each fit and the number of test samples behind it, from the app's Fit quality table (fitted 17 Oct 2026).</figcaption>
+          </figure>
+        </section>
+
+        <section class="split">
+          <div class="split-text">
+            <h2>What the data showed</h2>
+            <div class="prose">
+              <p>Fitting the data exposed three ways our tires break the usual expectations:</p>
+              <ul>
+                <li><strong>Slightly positive camber at low loads.</strong> Grip doesn't simply rise with more negative camber. The best camber moves from slightly positive at the lightest load to about −3° at the heaviest.</li>
+                <li><strong>Grip drift.</strong> Grip drifts slightly through each test, so the model keeps two grip levels: fresh, for structural loads, and settled, for handling.</li>
+                <li><strong>Strong asymmetry.</strong> Conicity and ply steer give the tires a heavy directional bias, so left and right turns aren't mirror images.</li>
+              </ul>
+            </div>
+          </div>
+          <figure class="split-visual">
+            <div class="tour-media">
+              <div class="tour-shot"><a href="app-tyre-camber.webp" data-view="0" title="Open the original app screenshot"><img src="tyre-grip-camber.webp" width="1144" height="858" loading="lazy" alt="Peak lateral grip coefficient against camber. At 445 N grip peaks at about plus 1 degree, at 890 N at about minus 0.3 degrees, and at 1112 N at about minus 3 degrees."></a><a href="app-tyre-mz.webp" data-view="1" title="Open the original app screenshot" hidden><img src="tyre-aligning.webp" width="1144" height="858" loading="lazy" alt="Aligning moment against slip angle at three loads. At 1112 N the peaks are plus 56 and minus 69 newton-metres, and every curve sits near minus 5 newton-metres at zero slip."></a></div>
+              <div class="view-switch" role="group" aria-label="Views"><button type="button" aria-pressed="true">Grip vs camber</button><button type="button" aria-pressed="false">Aligning moment</button></div>
+            </div>
+            <figcaption>Model curves at 12 psi, traced from the app's Tyre tab and redrawn; select a plot to see the original. Grey bands are outside the tested range. The aligning moment sits near −5 N·m at zero slip and its peaks are unequal, the signature of conicity and ply steer.</figcaption>
+          </figure>
+        </section>
+
+        <section class="split split--flip">
+          <div class="split-text">
+            <h2>What it changed</h2>
+            <div class="prose">
+              <p>Compared with last season's workflow, the model let us:</p>
+              <ul>
+                <li>Find the best tire pressure for lateral and longitudinal grip, front and rear.</li>
+                <li>Choose the camber gain that keeps the tires in their peak-grip window.</li>
+                <li>Set static camber and toe.</li>
+                <li>Use real tire forces in the FEA load cases instead of approximations.</li>
+                <li>Extrapolate more reliably beyond the TTC's tested ranges, with those results flagged.</li>
+                <li>Tune the rockers and anti-roll bars for wheel and roll rates that keep each tire's vertical load in its peak-grip band.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="split-visual">
+            <div class="flow" role="img" aria-label="TTC test data feeds the tire model, which sets tire pressures, camber gain, static camber and toe, FEA tire loads, and rocker and anti-roll bar rates.">
+              <div class="flow-node"><strong>TTC test data</strong><span>Hoosier 43100 · cornering, drive and brake runs</span></div>
+              <div class="flow-arrow" aria-hidden="true"></div>
+              <div class="flow-node flow-node--app"><strong>Tire model</strong><span>Magic Formula 6.1.2 · 4 channels</span></div>
+              <div class="flow-arrow" aria-hidden="true"></div>
+              <ul class="flow-out"><li>Tire pressures</li><li>Camber gain</li><li>Static camber and toe</li><li>FEA tire loads</li><li>Rocker and ARB rates</li></ul>
+            </div>
           </div>
         </section>
-        <section class="case-section">
-          <h2>Approach</h2>
-          <div class="prose">
-            <p>The data are Formula SAE Tire Test Consortium runs for a Hoosier 43100. Each channel is fitted to the Magic Formula 6.1.2 form with MATLAB's lsqnonlin, using a robust Huber loss (iteratively reweighted) so outlier samples don't drag the fit, and multiple starting points so the optimizer doesn't settle in a poor local minimum. Error is tracked per channel.</p><p>In the app, the tire module shows the force curves, compares test conditions, and labels each result with the range of data that supports it, so extrapolated regions aren't mistaken for measured ones.</p>
+
+        <section class="split">
+          <div class="split-text">
+            <h2>Validation and next steps</h2>
+            <div class="prose">
+              <p>I evaluated each fit on test runs that weren't used to fit it, and the error stayed between 2.6% and 3.0% of each load's measured peak force. In the app, every use of the model carries a status (supported, conditional, band or not supported), and anything outside the tested load, camber, pressure or slip range is shaded on the plots.</p>
+              <p>Next: <span class="ph">[next steps]</span></p>
+            </div>
           </div>
-        </section>
-        <section class="case-section">
-          <h2>Validation</h2>
-          <div class="prose">
-            <p>I evaluated each fit on test runs that were not used to fit it. Error stayed between 2.6% and 3.0% of each normal load's measured peak force. <span class="ph">[anything else you checked]</span></p>
-            <figure class="case-fig"><div class="ph-fig">Fitted curves (check TTC data terms before showing raw data)</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
-          </div>
-        </section>
-        <section class="case-section">
-          <h2>Results</h2>
-          <div class="prose">
-            <p>The model is the Suspension App's tire model: it feeds tire-informed limits, the tire operating-point study (sensitivity to load, camber and pressure) and the cornering, braking and traction load cases, in place of a single assumed friction coefficient.</p>
-          </div>
-        </section>
-        <section class="case-section">
-          <h2>What I'd do next</h2>
-          <div class="prose">
-            <p><span class="ph">[next steps]</span></p>
+          <div class="split-visual">
+            <div class="stat-card">
+              <span class="stat-value">2.6–3.0%</span>
+              <span class="stat-label">RMS error relative to each load's peak force, on test runs kept out of the fit</span>
+            </div>
           </div>
         </section>
       </div>
@@ -95,5 +167,6 @@
   </div>
 </footer>
 <script src="site.js" defer></script>
+<script src="app-tour.js" defer></script>
 </body>
 </html>
