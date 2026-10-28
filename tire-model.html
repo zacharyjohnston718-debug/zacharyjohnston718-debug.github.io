@@ -27,12 +27,12 @@
       <header class="case-head">
         <a class="crumb" href="./#projects">All projects</a>
         <h1>Tire data analysis</h1>
-        <p class="case-summary"><span class="ph">[summary: data, model, use]</span></p>
+        <p class="case-summary">MATLAB fitters that turn tire test data into Pacejka Magic Formula models of lateral and longitudinal force, aligning moment and combined slip. The fitted model now runs inside the <a href="suspension-dynamics.html">FSAE Suspension App</a>, where it informs the vehicle calculations.</p>
         <dl class="meta">
-              <div><dt>Role</dt><dd><span class="ph">[role]</span></dd></div>
+              <div><dt>Role</dt><dd>Developer</dd></div>
           <div><dt>Team</dt><dd>Binghamton Motorsports (FSAE)</dd></div>
           <div><dt>Timeline</dt><dd><span class="ph">[dates]</span></dd></div>
-          <div><dt>Tools</dt><dd><span class="ph">[tools]</span></dd></div>
+          <div><dt>Tools</dt><dd>MATLAB (lsqnonlin); Magic Formula 6.1.2</dd></div>
         </dl>
       <div class="case-cta"><a class="btn btn-solid" href="./#car-tires">See it on the car</a></div>
       </header>
@@ -41,9 +41,9 @@
         <figcaption><span class="ph">[caption]</span></figcaption>
       </figure>
       <div class="results">
-            <div class="result"><span class="result-value"><span class="ph">[value]</span></span><span class="result-label"><span class="ph">[fit error]</span></span></div>
-        <div class="result"><span class="result-value"><span class="ph">[value]</span></span><span class="result-label"><span class="ph">[cases covered]</span></span></div>
-        <div class="result"><span class="result-value"><span class="ph">[value]</span></span><span class="result-label"><span class="ph">[where it's used]</span></span></div>
+            <div class="result"><span class="result-value">2.6–3.0%</span><span class="result-label">RMSE of each load's measured peak, on runs kept out of the fit</span></div>
+        <div class="result"><span class="result-value">4</span><span class="result-label">channels fitted: lateral force, longitudinal force, aligning moment and combined slip</span></div>
+        <div class="result"><span class="result-value">1</span><span class="result-label">tire model shared by every calculation in the Suspension App</span></div>
       </div>
       <div class="case-body">
             <section class="case-section">
@@ -55,26 +55,26 @@
         <section class="case-section">
           <h2>My role</h2>
           <div class="prose">
-            <p><span class="ph">[my part vs. team]</span></p>
+            <p>I wrote and iterated the fitting scripts through several versions, then built them into the Suspension App's tire module. <span class="ph">[anything teammates contributed]</span></p>
           </div>
         </section>
         <section class="case-section">
           <h2>Approach</h2>
           <div class="prose">
-            <p><span class="ph">[data, model form, fitting method]</span></p>
+            <p>The data are Formula SAE Tire Test Consortium runs for a Hoosier 43100. Each channel is fitted to the Magic Formula 6.1.2 form with MATLAB's lsqnonlin, using a robust Huber loss (iteratively reweighted) so outlier samples don't drag the fit, and multiple starting points so the optimizer doesn't settle in a poor local minimum. Error is tracked per channel.</p><p>In the app, the tire module shows the force curves, compares test conditions, and labels each result with the range of data that supports it, so extrapolated regions aren't mistaken for measured ones.</p>
           </div>
         </section>
         <section class="case-section">
           <h2>Validation</h2>
           <div class="prose">
-            <p><span class="ph">[fit quality]</span></p>
-            <figure class="case-fig"><div class="ph-fig">Data vs. fit</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
+            <p>I evaluated each fit on test runs that were not used to fit it. Error stayed between 2.6% and 3.0% of each normal load's measured peak force. <span class="ph">[anything else you checked]</span></p>
+            <figure class="case-fig"><div class="ph-fig">Fitted curves (check TTC data terms before showing raw data)</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
           </div>
         </section>
         <section class="case-section">
           <h2>Results</h2>
           <div class="prose">
-            <p><span class="ph">[where it's used]</span></p>
+            <p>The model is the Suspension App's tire model: it feeds tire-informed limits, the tire operating-point study (sensitivity to load, camber and pressure) and the cornering, braking and traction load cases, in place of a single assumed friction coefficient.</p>
           </div>
         </section>
         <section class="case-section">

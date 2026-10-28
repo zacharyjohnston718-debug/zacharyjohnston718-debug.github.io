@@ -60,7 +60,7 @@
           <div class="prose">
             <h2>About</h2>
             <p><span class="ph">[bio]</span></p>
-            <p>On Binghamton Motorsports I work on suspension design and vehicle dynamics. <span class="ph">[team role, years on team]</span></p>
+            <p>On Binghamton Motorsports I work on suspension design and vehicle dynamics. I joined the suspension team as an apprentice in October 2025 and have been Vehicle Dynamics Lead since May 2026.</p>
           </div>
           <dl class="facts">
             <div><dt>School</dt><dd>Binghamton University</dd></div>
@@ -85,6 +85,9 @@
                 <li>Multibody kinematics in ANSYS Motion</li>
                 <li>Tire modeling (Pacejka Magic Formula)</li>
                 <li>CFD in ANSYS Fluent</li>
+                <li>Composite layups in ANSYS ACP</li>
+                <li>Physical modeling in Simscape</li>
+                <li>Telemetry analysis in MoTeC</li>
               </ul>
             </div>
             <div class="skill-group">
@@ -92,6 +95,7 @@
               <ul>
                 <li>Fusion 360</li>
                 <li>SolidWorks</li>
+                <li>Creo</li>
                 <li>Design for additive manufacturing</li>
                 <li>Blender: CAD import, non-destructive editing, procedural materials</li>
               </ul>
@@ -99,10 +103,10 @@
             <div class="skill-group">
               <h3>Programming and electronics</h3>
               <ul>
-                <li>MATLAB</li>
-                <li>Microcontroller code and circuits <span class="ph">[platform / language]</span></li>
+                <li>MATLAB, including GUI apps and compiled standalone builds</li>
+                <li>Python, C++, Java</li>
+                <li>Arduino and circuit design</li>
                 <li>Assetto Corsa vehicle modding</li>
-                <li><span class="ph">[other languages]</span></li>
               </ul>
             </div>
           </div>
@@ -119,12 +123,12 @@
               <li class="entry" data-car-system="suspension" data-car-group="Group_Suspension">
             <div class="ph-fig">Image</div>
             <div class="entry-body">
-              <h3 class="entry-title"><a data-link data-title href="suspension-dynamics.html">Suspension dynamics tool</a></h3>
-              <p class="entry-result" data-result>Team's first computational suspension design tool, replacing the paper calculations used in every previous season. Its results drove the design of eight suspension components on this year's car, three of which I'm designing myself.</p>
+              <h3 class="entry-title"><a data-link data-title href="suspension-dynamics.html">FSAE Suspension App</a></h3>
+              <p class="entry-result" data-result>A MATLAB app linking suspension geometry, coilover hardware, mass, tires, anti-roll bars and component loads in one car model, replacing the team's paper calculations. It grew from my ANSYS Motion model, and its results drove the design of eight suspension components on this year's car, three of which I'm designing myself.</p>
               <ul class="tags">
                 <li>MATLAB</li>
-            <li>ANSYS Motion</li>
             <li>Vehicle dynamics</li>
+            <li>Engineering software</li>
               </ul>
             </div>
     <div class="entry-side">
@@ -136,7 +140,7 @@
   <div class="ph-fig">Image</div>
   <div class="entry-body">
     <h3 class="entry-title"><a data-link data-title href="suspension-components.html">Suspension component design</a></h3>
-    <p class="entry-result" data-result>The front and rear shock towers and the rear rockers for this year's car, designed from my dynamics tool's results: modeled in Fusion 360, checked with FEA in ANSYS Mechanical, and designed for additive manufacturing.</p>
+    <p class="entry-result" data-result>The front and rear shock towers and the rear rockers for this year's car, designed from my Suspension App's results: modeled in Fusion 360, checked with FEA in ANSYS Mechanical, and designed for additive manufacturing.</p>
     <ul class="tags">
       <li>Fusion 360</li>
   <li>ANSYS Mechanical</li>
@@ -149,11 +153,11 @@
             <div class="ph-fig">Image</div>
             <div class="entry-body">
               <h3 class="entry-title"><a data-link data-title href="tire-model.html">Tire data analysis</a></h3>
-              <p class="entry-result" data-result><span class="ph">[one-line result]</span></p>
+              <p class="entry-result" data-result>Magic Formula tire models fitted to test data for lateral and longitudinal force, aligning moment and combined slip, within 2.6–3.0% RMSE of each load's peak on runs kept out of the fit. Now the Suspension App's tire model.</p>
               <ul class="tags">
                 <li>Tire modeling</li>
-            <li><span class="ph">[model]</span></li>
-            <li><span class="ph">[tools]</span></li>
+            <li>Pacejka Magic Formula</li>
+            <li>MATLAB</li>
               </ul>
             </div>
     <div class="entry-side">
@@ -165,7 +169,7 @@
             <div class="ph-fig">Image</div>
             <div class="entry-body">
               <h3 class="entry-title"><a data-link data-title href="driver-in-the-loop.html">Driver-in-the-loop simulator</a></h3>
-              <p class="entry-result" data-result>A digital twin of last season's car in Assetto Corsa for driver-in-the-loop testing, built from the team's Fusion 360 assembly, which I prepared and textured in Blender. <span class="ph">[impact]</span></p>
+              <p class="entry-result" data-result>A digital twin of last season's car in Assetto Corsa for driver-in-the-loop testing, built from the team's Fusion 360 assembly, which I prepared and textured in Blender. Design changes are compared in the sim through MoTeC telemetry.</p>
               <ul class="tags">
                 <li>Assetto Corsa</li>
             <li>Blender</li>
@@ -191,14 +195,14 @@
   <p>We took apart a commercial pulse oximeter, presented how each component works, and redesigned it in SolidWorks. I modeled the circuit boards and the outer shells.</p>
 </li>
 <li class="other-item">
-  <h3>Whack-a-mole game</h3>
-  <p class="other-context">Freshman design course, team project</p>
-  <p>A working game built from circuits and 3D-printed parts. I wrote the code, built the circuitry, and designed several of the printed parts.</p>
+  <h3>Arduino whack-a-mole game</h3>
+  <p class="other-context">Freshman design course, team leader</p>
+  <p>Led a four-person team to build a reaction game within a set component budget. I designed the circuit (daisy-chained shift registers driving four RGB LEDs and reading four buttons), wrote the control code, and designed several of the 3D-printed parts.</p>
 </li>
 <li class="other-item">
   <h3>Running gait biomechanics research</h3>
-  <p class="other-context">High school research program, three years</p>
-  <p>Studied how different running shoes change running gait. The work was reviewed by a board and presented at <span class="ph">[symposium name]</span>.</p>
+  <p class="other-context">University at Albany research program, high school, three years</p>
+  <p>Compared how different running shoes change gait in 18 track athletes at two running speeds, using a linear mixed-effects model to test significance. I wrote the paper, which was reviewed by a board, and presented the findings at <span class="ph">[symposium name]</span>.</p>
 </li>
           </ul>
         </div>

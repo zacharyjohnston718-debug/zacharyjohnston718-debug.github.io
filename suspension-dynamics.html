@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Suspension dynamics tool | Zachary Johnston</title>
-<meta name="description" content="Suspension dynamics tool: engineering case study by Zachary Johnston.">
+<title>FSAE Suspension App | Zachary Johnston</title>
+<meta name="description" content="FSAE Suspension App: engineering case study by Zachary Johnston.">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,69 +26,98 @@
     <main class="wrap">
       <header class="case-head">
         <a class="crumb" href="./#projects">All projects</a>
-        <h1>Suspension dynamics tool</h1>
-        <p class="case-summary">A MATLAB tool that replaced Binghamton Motorsports' paper suspension calculations. I was its sole developer, and its results drove the design of eight suspension components on this year's car, along with the frame changes to fit them.</p>
+        <h1>FSAE Suspension App</h1>
+        <p class="case-summary">A MATLAB application that ties suspension geometry, coilover hardware, vehicle mass, tires, anti-roll bars and component loads into one car model, so every calculation answers questions about the same car. It replaced Binghamton Motorsports' paper suspension calculations, and its results drove the design of eight suspension components on this year's car.</p>
         <dl class="meta">
-              <div><dt>Role</dt><dd>Sole developer</dd></div>
+          <div><dt>Role</dt><dd>Developer; Vehicle Dynamics Lead</dd></div>
           <div><dt>Team</dt><dd>Binghamton Motorsports (FSAE)</dd></div>
-          <div><dt>Timeline</dt><dd><span class="ph">[dates]</span></dd></div>
-          <div><dt>Tools</dt><dd>MATLAB; ANSYS Motion for the first kinematic model</dd></div>
+          <div><dt>Timeline</dt><dd><span class="ph">[start date]</span> – present; v2.0.1 released Oct 2026</dd></div>
+          <div><dt>Tools</dt><dd>MATLAB, MATLAB Compiler; ANSYS Motion for version 1</dd></div>
         </dl>
       <div class="case-cta"><a class="btn btn-solid" href="./#car-suspension">See it on the car</a></div>
       </header>
       <figure class="case-hero">
-        <div class="ph-fig">Main image</div>
+        <div class="ph-fig">App overview screenshot</div>
         <figcaption><span class="ph">[caption]</span></figcaption>
       </figure>
       <div class="results">
-            <div class="result"><span class="result-value">1st</span><span class="result-label">computer-based suspension design tool in team history</span></div>
+        <div class="result"><span class="result-value">1st</span><span class="result-label">computational suspension design workflow in team history</span></div>
         <div class="result"><span class="result-value">8</span><span class="result-label">suspension components on this year's car designed from its results</span></div>
-        <div class="result"><span class="result-value"><span class="ph">[x]</span></span><span class="result-label"><span class="ph">[iteration time, before vs. now]</span></span></div>
+        <div class="result"><span class="result-value">11</span><span class="result-label">linked analysis tabs, from kinematics to FEA load export</span></div>
       </div>
       <div class="case-body">
-            <section class="case-section">
+        <section class="case-section">
           <h2>The problem</h2>
           <div class="prose">
-            <p>Every previous season designed the suspension with paper calculations. <span class="ph">[cost of paper calcs]</span></p>
+            <p>Every previous season designed the suspension with paper calculations. Suspension decisions are coupled: moving a rocker pickup changes the motion ratio, the spring force at the wheel, where the car settles under its own weight, how much bump and droop is left, and the loads every link carries. Changing the car's mass moves the loaded ride position even when the CAD geometry stays the same.</p>
+            <p>Separate hand calculations can each be right and still disagree, because they use different ride references, mass cases or coordinate conventions. The people downstream also need more than a number: the CAD designer needs coordinates and clearance, the FEA designer needs load vectors and where they act, and whoever sets up the car needs settings they can measure.</p>
           </div>
         </section>
         <section class="case-section">
           <h2>My role</h2>
           <div class="prose">
-            <p>Sole developer. I wrote the tool myself and integrated the component designs my teammates produced. <span class="ph">[other responsibilities]</span></p>
+            <p>I'm the app's developer and the team's Vehicle Dynamics Lead. I set what it had to answer, supplied and checked the geometry and hardware data it runs on, made the design calls it informs, and coordinate its outputs with the teammates designing the other components. <span class="ph">[how you used AI coding tools, if at all]</span></p>
           </div>
         </section>
         <section class="case-section">
-          <h2>Where it started</h2>
+          <h2>How it evolved</h2>
           <div class="prose">
-            <p>I first built a working kinematic model of the suspension in ANSYS Motion. When license limits ruled Motion out, I rebuilt the analysis in MATLAB, using the Motion model as the groundwork. <span class="ph">[what carried over]</span></p>
+            <ol>
+              <li><strong>Version 1, ANSYS Motion.</strong> I built the team's first kinematic model of the suspension as a multibody model in Motion.</li>
+              <li><strong>MATLAB model.</strong> When license limits ruled Motion out, I rebuilt the analysis in MATLAB from that model, alongside separate scripts for tire fitting and rocker design.</li>
+              <li><strong>Suspension App.</strong> I combined those scripts into one application with a graphical interface and a shared car model. Version 2.0.1 ships as a compiled Windows build, so teammates can run it without a MATLAB license.</li>
+            </ol>
           </div>
         </section>
         <section class="case-section">
-          <h2>Approach</h2>
+          <h2>How it works</h2>
           <div class="prose">
-            <p><span class="ph">[what it computes; inputs and outputs]</span></p>
-            <p><span class="ph">[structure and size]</span></p>
-            <figure class="case-fig"><div class="ph-fig">Tool screenshot or output plot</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
+            <p>The car is defined once, in a car-model file with a linked tire model: hardpoints in the team's Fusion 360 coordinates, coilover hardware, masses and anti-roll bar data. Each input carries its units and where it came from (CAD coordinate, measurement, fitted value or estimate), so a result can be traced back to its assumptions.</p>
+            <p>The user starts from the question. Choosing an output tells the app which inputs it needs. Temporary overrides let you try a change without editing the saved car, and every result shows "this setup" next to the saved car model so the effect of the change is visible.</p>
+            <p>What it calculates:</p>
+            <ul>
+              <li><strong>Kinematics through travel:</strong> motion ratio, camber, toe, bump steer, roll center movement, caster, kingpin inclination, scrub radius and mechanical trail.</li>
+              <li><strong>Static ride and travel:</strong> where the car settles with the actual spring, preload and collar setting, and how much bump and droop remain from there.</li>
+              <li><strong>Rates:</strong> wheel rate, ride frequency with and without tire compliance, and light/heavy mass cases.</li>
+              <li><strong>Steering and anti-geometry:</strong> Ackermann, turning radius, steering ratio, anti-dive, anti-lift and anti-squat.</li>
+              <li><strong>Roll and anti-roll bars:</strong> roll gradient, roll stiffness split and lateral load transfer, with the bar's drop-link geometry solved for each hole position.</li>
+              <li><strong>Tires:</strong> my Magic Formula tire model, used for tire-informed limits instead of a single friction coefficient. See <a href="tire-model.html">Tire data analysis</a>.</li>
+              <li><strong>Rocker design search:</strong> samples rocker pickup points inside allowed regions, rejects candidates that fail travel, collar, rate or material-edge checks, ranks the rest, and exports the winners as Fusion coordinates.</li>
+              <li><strong>FEA loads:</strong> forces and moments at each hardpoint for static, bump, cornering, braking, traction and combined events, with equilibrium checks, exported for ANSYS Mechanical.</li>
+              <li><strong>Packaging:</strong> sweeps simplified parts through suspension travel and steering, and exports the resulting keep-out volumes to Fusion 360 for the frame and other subsystems.</li>
+            </ul>
+            <figure class="case-fig"><div class="ph-fig">Rocker in CAD with its motion-ratio curve</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
           </div>
         </section>
         <section class="case-section">
-          <h2>Validation</h2>
+          <h2>One calculation, start to finish</h2>
           <div class="prose">
-            <p><span class="ph">[validation; Motion vs. MATLAB comparison]</span></p>
+            <p>The core question is whether a rocker and shock layout gives enough bump and droop once the car settles under its own weight. The CAD pose is not the ride position, so the app solves for it.</p>
+            <p>Motion ratio is defined as shock compression per unit of wheel bump, <span class="eq">MR = −dL<sub>shock</sub>/dz<sub>wheel</sub></span>, evaluated through travel rather than at one pose. With free spring length L<sub>free</sub>, shaft-seat offset s and collar position a, the spring compression at shock length L is <span class="eq">x = L<sub>free</sub> + s + a − L</span>, and the force supporting the wheel is <span class="eq">F = (k·x + F<sub>gas</sub>)·MR</span>.</p>
+            <p>Static ride is where that force balances the sprung corner weight. Bump and droop are then measured from that loaded position, against a hard limit of 50.8 mm of total spring compression set for the project, plus shock stroke reserves and collar thread limits. Wheel rate comes from the slope of the wheel-force curve, so it captures geometry effects that the usual <span class="eq">k·MR²</span> approximation misses.</p>
+            <p>The same solved pose then feeds the load calculations: each event is balanced across the upright, both arms and the rocker, and the resulting forces are exported at the hardpoints where the FEA model needs them.</p>
+          </div>
+        </section>
+        <section class="case-section">
+          <h2>Verification and limits</h2>
+          <div class="prose">
+            <p>The load solver reports force and moment residuals for each body and compares force transmission against the mechanism's motion as a virtual-work check. Model corrections and interface changes get targeted check sets: 17 checks for the October 23 model corrections, and 14 for removing a synthetic 1,000 N reference load case that sat beside the real cases and was easy to misread. The v2.0.1 build was verified against its source and data files before release.</p>
+            <p>These checks verify the math and the software, not the car. The analysis is rigid-body and quasi-static: it doesn't model frame compliance, bushing play or damper hysteresis, and its loads haven't yet been compared with measured data. The rocker search is a sampled search with explicit pass/fail checks, not a proof of the best possible design. The app generates FEA inputs; stress analysis happens separately in ANSYS Mechanical. <span class="ph">[Motion vs. MATLAB comparison, if you did one]</span></p>
           </div>
         </section>
         <section class="case-section">
           <h2>Results</h2>
           <div class="prose">
             <p>Eight suspension components on this year's car were designed from its results. I'm designing three of them myself, the front and rear shock towers and the rear rockers; see <a href="suspension-components.html">Suspension component design</a>. Teammates used it for the front rockers, the front and rear anti-roll bars, the front and rear pushrods, and the frame changes to fit them.</p>
+            <p>When a teammate redesigned the anti-roll bars, the app produced the load package for that design: forces on the whole blade assembly for each operating and articulation case, in the CAD coordinate system. The compiled build lets teammates run the analysis themselves without MATLAB.</p>
             <p><span class="ph">[example design decision]</span></p>
+            <figure class="case-fig"><div class="ph-fig">Keep-out volume or load-case diagram</div><figcaption><span class="ph">[caption]</span></figcaption></figure>
           </div>
         </section>
         <section class="case-section">
           <h2>What I'd do next</h2>
           <div class="prose">
-            <p><span class="ph">[next steps]</span></p>
+            <p>Compare the predicted ride position, travel and loads against measurements on the new car. Add an archive of past runs, since the app currently keeps only the latest result per module. Bring the separate design studies (pushrod adjustment, mass and weight-distribution sweeps) into the app itself. <span class="ph">[other next steps]</span></p>
           </div>
         </section>
       </div>
